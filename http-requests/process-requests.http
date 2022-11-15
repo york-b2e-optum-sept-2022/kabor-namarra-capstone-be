@@ -3,7 +3,7 @@ POST http://localhost:8080/api/process
 Content-Type: application/json
 
 {
-  "name": "Questions"
+  "name": "Holiday"
 }
 
 ###

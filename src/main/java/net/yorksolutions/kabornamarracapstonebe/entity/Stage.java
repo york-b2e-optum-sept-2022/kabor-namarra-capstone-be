@@ -1,7 +1,6 @@
 package net.yorksolutions.kabornamarracapstonebe.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +14,6 @@ public class Stage {
     @ManyToOne
     private Process process;
 
-    private Boolean yesNo;
-
     @ElementCollection
     private List<String> textAnswer;
 
@@ -24,17 +21,22 @@ public class Stage {
     private List<String> multipleChoice;
 
     @ElementCollection
-    private List<String> multipleCheckBox;
+    private List<String> checkBox;
+
+    private STAGE_TYPE stage_type;
+
+    private Long stageOrder;
 
     public Stage() {
     }
 
-    public Stage(Process process, Boolean yesNo, List<String> textAnswer, List<String> multipleChoice, List<String> multipleCheckBox) {
+    public Stage(Process process, List<String> textAnswer, List<String> multipleChoice, List<String> checkBox, STAGE_TYPE stage_type, Long stageOrder) {
         this.process = process;
-        this.yesNo = yesNo;
         this.textAnswer = textAnswer;
         this.multipleChoice = multipleChoice;
-        this.multipleCheckBox = multipleCheckBox;
+        this.checkBox = checkBox;
+        this.stage_type = stage_type;
+        this.stageOrder = stageOrder;
     }
 
     public Long getId() {
@@ -47,14 +49,6 @@ public class Stage {
 
     public void setProcess(Process process) {
         this.process = process;
-    }
-
-    public Boolean getYesNo() {
-        return yesNo;
-    }
-
-    public void setYesNo(Boolean yesNo) {
-        this.yesNo = yesNo;
     }
 
     public List<String> getTextAnswer() {
@@ -73,11 +67,27 @@ public class Stage {
         this.multipleChoice = multipleChoice;
     }
 
-    public List<String> getMultipleCheckBox() {
-        return multipleCheckBox;
+    public List<String> getCheckBox() {
+        return checkBox;
     }
 
-    public void setMultipleCheckBox(List<String> multipleCheckBox) {
-        this.multipleCheckBox = multipleCheckBox;
+    public void setCheckBox(List<String> checkBox) {
+        this.checkBox = checkBox;
+    }
+
+    public STAGE_TYPE getStage_type() {
+        return stage_type;
+    }
+
+    public void setStage_type(STAGE_TYPE stage_type) {
+        this.stage_type = stage_type;
+    }
+
+    public Long getStageOrder() {
+        return stageOrder;
+    }
+
+    public void setStageOrder(Long stageOrder) {
+        this.stageOrder = stageOrder;
     }
 }

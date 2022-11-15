@@ -1,0 +1,26 @@
+POST http://localhost:8080/api/stage
+Content-Type: application/json
+
+{
+  "processId": "2",
+  "multipleChoice": [
+    "Today",
+    "Tomorrow",
+    "Next Week"
+  ],
+  "stage_type": 1,
+  "stageOrder": 1
+}
+
+###
+GET http://localhost:8080/api/stage?processId=2
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/api/stage
+Content-Type: application/json
+
+{
+  "id": "6",
+  "multipleChoice": ["family","friends","people"]
+}
