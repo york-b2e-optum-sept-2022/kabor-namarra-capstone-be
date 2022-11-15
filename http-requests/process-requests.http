@@ -1,0 +1,15 @@
+###
+POST http://localhost:8080/api/process
+Content-Type: application/json
+
+{
+  "name": "Questions"
+}
+
+###
+GET http://localhost:8080/api/process
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/process/oneProcess?id=2
+Content-Type: application/json
