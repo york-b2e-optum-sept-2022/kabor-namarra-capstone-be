@@ -30,7 +30,7 @@ public class StageService {
         }
 
         return this.stageRepository.save(
-                new Stage(processOpt.get(), stageRequestDTO.textAnswer, stageRequestDTO.multipleChoice,stageRequestDTO.checkBox, stageRequestDTO.stage_type, stageRequestDTO.stageOrder)
+                new Stage(processOpt.get(), stageRequestDTO.textAnswer, stageRequestDTO.multipleChoice,stageRequestDTO.checkBox, stageRequestDTO.stage_type, stageRequestDTO.stageOrder, stageRequestDTO.question)
         );
     }
 
@@ -45,6 +45,8 @@ public class StageService {
         stage.setCheckBox(stageRequestDTO.checkBox);
         stage.setStage_type(stageRequestDTO.stage_type);
         stage.setStageOrder(stageRequestDTO.stageOrder);
+        stage.setQuestion(stageRequestDTO.question);
+
 
         return this.stageRepository.save(stage);
 

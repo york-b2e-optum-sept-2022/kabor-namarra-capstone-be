@@ -27,16 +27,19 @@ public class Stage {
 
     private Long stageOrder;
 
+    private String question;
+
     public Stage() {
     }
 
-    public Stage(Process process, List<String> textAnswer, List<String> multipleChoice, List<String> checkBox, STAGE_TYPE stage_type, Long stageOrder) {
+    public Stage(Process process, List<String> textAnswer, List<String> multipleChoice, List<String> checkBox, STAGE_TYPE stage_type, Long stageOrder, String question) {
         this.process = process;
         this.textAnswer = textAnswer;
         this.multipleChoice = multipleChoice;
         this.checkBox = checkBox;
         this.stage_type = stage_type;
         this.stageOrder = stageOrder;
+        this.question = question;
     }
 
     public Long getId() {
@@ -89,5 +92,13 @@ public class Stage {
 
     public void setStageOrder(Long stageOrder) {
         this.stageOrder = stageOrder;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 }

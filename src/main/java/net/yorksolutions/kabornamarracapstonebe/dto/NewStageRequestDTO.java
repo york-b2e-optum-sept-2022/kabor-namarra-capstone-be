@@ -12,4 +12,5 @@ public class NewStageRequestDTO {
     public List<String> checkBox;
     public STAGE_TYPE stage_type;
     public Long stageOrder;
+    public String question;
 }

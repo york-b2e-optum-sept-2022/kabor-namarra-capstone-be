@@ -4,12 +4,13 @@ Content-Type: application/json
 {
   "processId": "2",
   "multipleChoice": [
-    "Today",
-    "Tomorrow",
-    "Next Week"
+    "Dessert",
+    "Appetizer",
+    "Hot-dish"
   ],
   "stage_type": 1,
-  "stageOrder": 1
+  "stageOrder": 3,
+  "question": "What kind of food will you bring?"
 }
 
 ###
