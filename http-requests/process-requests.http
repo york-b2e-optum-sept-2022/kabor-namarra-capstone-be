@@ -3,7 +3,20 @@ POST http://localhost:8080/api/process
 Content-Type: application/json
 
 {
-  "name": "Holiday"
+  "name": "Seasons",
+  "stages": [
+    {
+      "choiceText": [
+        {"choice":"Spring"},
+        {"choice":"Summer"},
+        {"choice":"Fall"},
+        {"choice":"Winter"}
+      ],
+      "stage_type": 2,
+      "stageOrder": 1,
+      "question": "What season is your favorite?"
+    }
+  ]
 }
 
 ###

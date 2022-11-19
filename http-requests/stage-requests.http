@@ -3,14 +3,14 @@ Content-Type: application/json
 
 {
   "processId": "2",
-  "multipleChoice": [
-    "Dessert",
-    "Appetizer",
-    "Hot-dish"
+  "choiceText": [
+    "food",
+    "drinks",
+    "utensils"
   ],
   "stage_type": 1,
   "stageOrder": 3,
-  "question": "What kind of food will you bring?"
+  "question": "What are you bringing?"
 }
 
 ###
@@ -22,6 +22,13 @@ PUT http://localhost:8080/api/stage
 Content-Type: application/json
 
 {
-  "id": "6",
-  "multipleChoice": ["family","friends","people"]
+  "id": "11",
+  "choiceText": [
+    "Outside",
+    "drinks",
+    "utensils"
+  ],
+  "stage_type": 2,
+  "stageOrder": 4,
+  "question": "Words?"
 }

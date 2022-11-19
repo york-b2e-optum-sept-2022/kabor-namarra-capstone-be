@@ -1,5 +1,6 @@
 package net.yorksolutions.kabornamarracapstonebe.controller;
 
+import net.yorksolutions.kabornamarracapstonebe.dto.NewProcessRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.entity.Process;
 import net.yorksolutions.kabornamarracapstonebe.service.ProcessService;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class ProcessController {
     }
 
     @PostMapping
-    public Process createProcess(@RequestBody Process process){
-        return this.processService.createProcess(process);
+    public Process createProcess(@RequestBody NewProcessRequestDTO requestDTO){
+        return this.processService.createProcess(requestDTO);
     }
 
     @GetMapping

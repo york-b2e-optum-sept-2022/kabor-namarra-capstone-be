@@ -1,5 +1,6 @@
 package net.yorksolutions.kabornamarracapstonebe.service;
 
+import net.yorksolutions.kabornamarracapstonebe.dto.NewAddStageRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.dto.NewStageRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.dto.NewUpdateStageRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.entity.Process;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,15 +26,18 @@ public class StageService {
         this.processRepository = processRepository;
     }
 
-    public Stage createStage(NewStageRequestDTO stageRequestDTO){
-        Optional<Process> processOpt = this.processRepository.findById(stageRequestDTO.processId);
+    public Stage createStage(NewAddStageRequestDTO addStageRequestDTO){
+        Optional<Process> processOpt = this.processRepository.findById(addStageRequestDTO.processId);
         if (processOpt.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        Stage stage = new Stage(processOpt.get(),addStageRequestDTO.choiceText,addStageRequestDTO.stage_type,addStageRequestDTO.stageOrder, addStageRequestDTO.question);
 
-        return this.stageRepository.save(
-                new Stage(processOpt.get(), stageRequestDTO.textAnswer, stageRequestDTO.multipleChoice,stageRequestDTO.checkBox, stageRequestDTO.stage_type, stageRequestDTO.stageOrder, stageRequestDTO.question)
-        );
+//        Stage stage = new Stage(processOpt.get(), stageRequestDTO.choiceText, stageRequestDTO.stage_type, stageRequestDTO.stageOrder, stageRequestDTO.question);
+        processOpt.get().getStages().add(stage);
+        processOpt.get().setStages(processOpt.get().getStages());
+
+        return this.stageRepository.save(stage);
     }
 
     public Stage updateStage(NewUpdateStageRequestDTO stageRequestDTO){
@@ -40,9 +46,7 @@ public class StageService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         Stage stage = stageOpt.get();
-        stage.setTextAnswer(stageRequestDTO.textAnswer);
-        stage.setMultipleChoice(stageRequestDTO.multipleChoice);
-        stage.setCheckBox(stageRequestDTO.checkBox);
+        stage.setChoiceText(stageRequestDTO.choiceText);
         stage.setStage_type(stageRequestDTO.stage_type);
         stage.setStageOrder(stageRequestDTO.stageOrder);
         stage.setQuestion(stageRequestDTO.question);
@@ -59,12 +63,12 @@ public class StageService {
         }
         return this.stageRepository.findAllByProcess(processOpt.get());
     }
-
-    public Stage getStage(Long id){
-        Optional<Stage> stageOpt = this.stageRepository.findById(id);
-        if (stageOpt.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        return stageOpt.get();
-    }
+//
+//    public Stage getStage(Long id){
+//        Optional<Stage> stageOpt = this.stageRepository.findById(id);
+//        if (stageOpt.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+//        }
+//        return stageOpt.get();
+//    }
 }

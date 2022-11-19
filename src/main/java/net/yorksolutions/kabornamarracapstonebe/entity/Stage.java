@@ -1,9 +1,16 @@
 package net.yorksolutions.kabornamarracapstonebe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Stage {
 
     @Id
@@ -11,17 +18,14 @@ public class Stage {
     Long id;
 
 
-    @ManyToOne
+    @ManyToOne()
+    @JsonBackReference
+//    @JoinColumn(name = "process_id", referencedColumnName = "id")
     private Process process;
 
+//    @OneToMany(cascade = {CascadeType.ALL})
     @ElementCollection
-    private List<String> textAnswer;
-
-    @ElementCollection
-    private List<String> multipleChoice;
-
-    @ElementCollection
-    private List<String> checkBox;
+    private List<String> choiceText;
 
     private STAGE_TYPE stage_type;
 
@@ -32,11 +36,15 @@ public class Stage {
     public Stage() {
     }
 
-    public Stage(Process process, List<String> textAnswer, List<String> multipleChoice, List<String> checkBox, STAGE_TYPE stage_type, Long stageOrder, String question) {
+//    public Stage(Process process, String question) {
+//        this.process = process;
+//        this.question = question;
+//    }
+
+
+    public Stage(Process process, List<String> choiceText, STAGE_TYPE stage_type, Long stageOrder, String question) {
         this.process = process;
-        this.textAnswer = textAnswer;
-        this.multipleChoice = multipleChoice;
-        this.checkBox = checkBox;
+        this.choiceText = choiceText;
         this.stage_type = stage_type;
         this.stageOrder = stageOrder;
         this.question = question;
@@ -54,28 +62,12 @@ public class Stage {
         this.process = process;
     }
 
-    public List<String> getTextAnswer() {
-        return textAnswer;
+    public List<String> getChoiceText() {
+        return choiceText;
     }
 
-    public void setTextAnswer(List<String> textAnswer) {
-        this.textAnswer = textAnswer;
-    }
-
-    public List<String> getMultipleChoice() {
-        return multipleChoice;
-    }
-
-    public void setMultipleChoice(List<String> multipleChoice) {
-        this.multipleChoice = multipleChoice;
-    }
-
-    public List<String> getCheckBox() {
-        return checkBox;
-    }
-
-    public void setCheckBox(List<String> checkBox) {
-        this.checkBox = checkBox;
+    public void setChoiceText(List<String> choiceText) {
+        this.choiceText = choiceText;
     }
 
     public STAGE_TYPE getStage_type() {

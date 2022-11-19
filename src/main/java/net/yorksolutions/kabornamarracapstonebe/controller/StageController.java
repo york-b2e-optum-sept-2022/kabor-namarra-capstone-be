@@ -1,5 +1,6 @@
 package net.yorksolutions.kabornamarracapstonebe.controller;
 
+import net.yorksolutions.kabornamarracapstonebe.dto.NewAddStageRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.dto.NewStageRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.dto.NewUpdateStageRequestDTO;
 import net.yorksolutions.kabornamarracapstonebe.entity.Stage;
@@ -18,8 +19,8 @@ public class StageController {
     }
 
     @PostMapping
-    public Stage createStage(@RequestBody NewStageRequestDTO stageRequestDTO){
-        return this.stageService.createStage(stageRequestDTO);
+    public Stage createStage(@RequestBody NewAddStageRequestDTO addStageRequestDTO){
+        return this.stageService.createStage(addStageRequestDTO);
     }
 
     @GetMapping
@@ -27,10 +28,10 @@ public class StageController {
         return this.stageService.getAllStages(processId);
     }
 
-    @GetMapping("/oneStage")
-    public Stage getStage(@RequestParam Long id){
-        return this.stageService.getStage(id);
-    }
+//    @GetMapping("/oneStage")
+//    public Stage getStage(@RequestParam Long id){
+//        return this.stageService.getStage(id);
+//    }
 
     @PutMapping
     public Stage updateStage(@RequestBody NewUpdateStageRequestDTO stageRequestDTO){
