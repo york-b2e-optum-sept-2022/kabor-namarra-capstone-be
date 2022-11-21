@@ -16,13 +16,7 @@ public class stageAnswers {
     private Process process;
 
     @ElementCollection
-    private List<String> textAnswer;
-
-    @ElementCollection
-    private List<String> multipleChoice;
-
-    @ElementCollection
-    private List<String> checkBox;
+    private List<String> choice;
 
 
 }
