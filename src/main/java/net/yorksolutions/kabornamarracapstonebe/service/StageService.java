@@ -71,4 +71,14 @@ public class StageService {
 //        }
 //        return stageOpt.get();
 //    }
+
+//    public void deleteStages(Long processId){
+//        Optional<Process> processOpt = this.processRepository.findById(processId);
+//        if (processOpt.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+//        }
+//
+//        Iterable<Stage> stages = this.stageRepository.findAllByProcess(processOpt.get());
+//        this.stageRepository.deleteAll(stages);
+//    }
 }

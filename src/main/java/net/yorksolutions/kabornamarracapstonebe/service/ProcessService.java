@@ -87,4 +87,15 @@ public class ProcessService {
         this.stageRepository.saveAll(stageList);
         return this.processRepository.save(process);
     }
+
+    public void deleteProcess(Long processId){
+        Optional<Process> processOpt = this.processRepository.findById(processId);
+        if (processOpt.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+//        Iterable<Stage> stages = this.stageRepository.findAllByProcess(processOpt.get());
+//        processOpt.get().
+
+        this.processRepository.delete(processOpt.get());
+    }
 }

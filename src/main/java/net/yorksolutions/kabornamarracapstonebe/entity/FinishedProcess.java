@@ -12,7 +12,7 @@ public class FinishedProcess {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<FinishedStage> finishedStages;
 
 
