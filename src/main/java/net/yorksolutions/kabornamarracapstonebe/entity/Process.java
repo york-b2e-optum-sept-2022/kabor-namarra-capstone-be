@@ -3,6 +3,8 @@ package net.yorksolutions.kabornamarracapstonebe.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +22,8 @@ public class Process {
 
     private String name;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "process",cascade = {CascadeType.ALL}, orphanRemoval = true,fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<Stage> stages;
 
@@ -54,6 +57,6 @@ public class Process {
     }
 
     public void setStages(List<Stage> stages) {
-        this.stages = stages;
+        this.stages.addAll(stages);
     }
 }

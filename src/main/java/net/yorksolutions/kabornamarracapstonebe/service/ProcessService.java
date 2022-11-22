@@ -83,8 +83,13 @@ public class ProcessService {
         process.setStages(stageList);
         process.setName(updatedProcessDTO.name);
 
+//        Process process = processOpt.get();
+//        process.getStages().clear();
+//        process.getStages().addAll(stageList);
+//        process.setName(updatedProcessDTO.name);
 
-        this.stageRepository.saveAll(stageList);
+
+//        this.stageRepository.saveAll(stageList);
         return this.processRepository.save(process);
     }
 
@@ -93,9 +98,11 @@ public class ProcessService {
         if (processOpt.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-//        Iterable<Stage> stages = this.stageRepository.findAllByProcess(processOpt.get());
-//        processOpt.get().
+        Iterable<Stage> stages = this.stageRepository.findAllByProcess(processOpt.get());
 
+//        processOpt.get().getStages().remove()
+
+        this.stageRepository.deleteAll(stages);
         this.processRepository.delete(processOpt.get());
     }
 }
