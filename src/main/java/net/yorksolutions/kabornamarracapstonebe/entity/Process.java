@@ -10,10 +10,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id"
+//)
 public class Process {
 
     @Id
@@ -22,7 +22,7 @@ public class Process {
 
     private String name;
 
-    @OneToMany(mappedBy = "process",cascade = {CascadeType.ALL}, orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "process",cascade = {CascadeType.ALL}, orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<Stage> stages;
@@ -57,6 +57,6 @@ public class Process {
     }
 
     public void setStages(List<Stage> stages) {
-        this.stages.addAll(stages);
+        this.stages = stages;
     }
 }

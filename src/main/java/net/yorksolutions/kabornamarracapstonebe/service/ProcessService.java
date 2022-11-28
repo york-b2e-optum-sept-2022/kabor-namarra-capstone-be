@@ -77,16 +77,16 @@ public class ProcessService {
 
             stageList.add(stageUp);
         }
-        stageList.sort(Comparator.comparing(Stage::getStageOrder));
+//        stageList.sort(Comparator.comparing(Stage::getStageOrder));
+//
+//        Process process = processOpt.get();
+//        process.setStages(stageList);
+//        process.setName(updatedProcessDTO.name);
 
         Process process = processOpt.get();
-        process.setStages(stageList);
+        process.getStages().clear();
+        process.getStages().addAll(stageList);
         process.setName(updatedProcessDTO.name);
-
-//        Process process = processOpt.get();
-//        process.getStages().clear();
-//        process.getStages().addAll(stageList);
-//        process.setName(updatedProcessDTO.name);
 
 
 //        this.stageRepository.saveAll(stageList);
